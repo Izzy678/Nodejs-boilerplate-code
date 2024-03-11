@@ -29,7 +29,3 @@ Before you begin, ensure you have the following installed on your machine:
 - **Sequelize ORM**: A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite, and Microsoft SQL Server.
 - **PostgreSQL**: Powerful, open-source object-relational database system.
 
-## Project Structure
-
-The project structure is as follows:
-
