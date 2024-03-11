@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { createUserHandler, viewUserProfileHandler } from "../controller/user.controller";
+import { createUserHandler, updateUserProfileHandler, viewUserProfileHandler } from "../controller/user.controller";
 import { ValidateUserInput } from "../../middleware/validation.middleware";
-import { signUpValidator } from "../validator/user.validator";
+import { signUpSchema, updateUserSchema } from "../validator/user.validator";
+import requireUser from "../../middleware/requireUser.middleware";
 
 const userRoutes = Router();
 
-userRoutes.post('/sign-up',ValidateUserInput(signUpValidator),createUserHandler)
-userRoutes.get('/view-profile',viewUserProfileHandler)
+userRoutes.post('/sign-up',ValidateUserInput(signUpSchema),createUserHandler);
+userRoutes.get('/view-profile',viewUserProfileHandler);
+userRoutes.patch('/update-profile',[requireUser, ValidateUserInput(updateUserSchema)],updateUserProfileHandler);
 
 export default userRoutes;

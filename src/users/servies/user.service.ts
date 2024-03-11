@@ -32,8 +32,8 @@ export async function findUserById(id: string) {
   return foundUser;
 }
 
-export async function createUser(createUserData: IcreateUser): Promise<User> {
-  const { email, userName, firstName, lastName, password } = createUserData;
+export async function createUser(createUserDto: IcreateUser): Promise<User> {
+  const { email, userName, firstName, lastName, password } = createUserDto;
 
   const foundUser = await findUserByEmail(email);
   if (foundUser)
@@ -48,12 +48,11 @@ export async function createUser(createUserData: IcreateUser): Promise<User> {
   });
 }
 
-export async function updateUser(updateUserDto: IUpdateUser) {
-  return await User.update(updateUserDto, {
-    where: {
-      id: updateUserDto.id,
-    },
-  });
+export async function updateUser(query:object,updateDto:User) {
+  const user = await User.findOne({where:{...query}});
+  if(!user) throw new NotFoundException("user not found");
+  const updatedUser = await user.update(updateDto);
+  return updatedUser;
 }
 
 // export async function validateUserPassword(email: string, password: string) {

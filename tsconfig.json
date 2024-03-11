@@ -7,7 +7,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
+    "experimentalDecorators": true,
     /* Type Checking */
     "strict": true,
     // "skipDefaultLibCheck": true,

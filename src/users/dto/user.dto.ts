@@ -4,10 +4,7 @@ export interface IcreateUser extends Pick<User,'firstName'|'lastName'|'userName'
 
 export interface ISignIn extends Pick<User,'email'|'password'>{}
 
-export interface IUserExistFunctionType {
-    exist:boolean,
-    foundUser:User|null
-}
+
 
 export interface IUpdateUser extends IcreateUser {
      id:string

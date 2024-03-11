@@ -5,8 +5,8 @@ import sessionRoute from "./session/routes/session.routes";
 
 const appRoute = Router();
 
-appRoute.use('/auth',authRouter);
-appRoute.use('/users',userRoutes);
-appRoute.use('/sessions',sessionRoute)
+appRoute.use('/api/auth',authRouter);
+appRoute.use('/api/users',userRoutes);
+appRoute.use('/api/sessions',sessionRoute);
 
 export default appRoute;

@@ -3,9 +3,9 @@ import { SignInUserHandler, SignOutUserHandler } from "../controller/auth.contro
 import { ValidateUserInput } from "../../middleware/validation.middleware";
 import { signInSchema } from "../validation/auth.validation";
 
-const authRouter = Router();
+const authRoutes = Router();
 
-authRouter.get('/sign-in',ValidateUserInput(signInSchema),SignInUserHandler);
-authRouter.post('/sign-out',SignOutUserHandler);
+authRoutes.get('/sign-in',ValidateUserInput(signInSchema),SignInUserHandler);
+authRoutes.post('/sign-out',SignOutUserHandler);
 
-export default authRouter;
+export default authRoutes;

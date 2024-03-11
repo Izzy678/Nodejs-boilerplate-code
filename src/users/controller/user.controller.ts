@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { createUser } from "../servies/user.service";
+import { createUser, updateUser } from "../servies/user.service";
 import { HttpStatusCode } from "../../common/enums/httpStatusCode.enum";
-import log from "../../common/utils/function/logger";
+import { TokenDto } from "../../auth/dto/token.dto";
 
 export const createUserHandler = async (
   req: Request,
@@ -22,5 +22,18 @@ export const viewUserProfileHandler = async (
   next: NextFunction
 ) => {
   const tokenData = res.locals.user;
-  res.send(tokenData)
+  res.send(tokenData);
+};
+
+export const updateUserProfileHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const tokenData = res.locals.user as TokenDto;
+  const updatedUser = await updateUser({id:tokenData.user}, req.body);
+  res.status(HttpStatusCode.SUCCESS).send({
+    message: "user updated succesfully",
+    updatedUser,
+  });
 };
